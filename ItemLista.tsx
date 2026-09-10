@@ -1,23 +1,18 @@
 // ItemLista.tsx - aula 12, estado final
 import { StyleSheet, Text, View, useColorScheme } from "react-native";
 import type { StatusSync, Vistoria } from "./types";
+import { textoDoStatus } from "./types";
 import { claro, escuro } from "./tema";
 
 type Props = { item: Vistoria };
 
-const ESTADO = {
-  rascunho:     { texto: "Rascunho",          cor: "rascunho" },
-  na_fila:      { texto: "Salvo no aparelho", cor: "naFila" },
-  sincronizado: { texto: "Enviado",           cor: "sincronizado" },
-  erro:         { texto: "Falha ao enviar",   cor: "erro" },
-} as const;
+
 
 function Badge({ status }: { status: StatusSync }) {
   const cores = useColorScheme() === "dark" ? escuro : claro;
-  const { texto, cor } = ESTADO[status];
   return (
-    <View style={[styles.badge, { backgroundColor: cores[cor] }]}>
-      <Text style={styles.badgeTexto}>{texto}</Text>
+    <View style={[styles.badge, { backgroundColor: cores.estado[status] }]}>
+      <Text style={styles.badgeTexto}>{textoDoStatus(status)}</Text>
     </View>
   );
 }
