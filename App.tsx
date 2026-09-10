@@ -11,10 +11,11 @@ const REGISTROS: Vistoria[] = [
 ];
 
 function ListaVazia() {
+  const cores = useColorScheme() === "dark" ? escuro : claro;
   return (
     <View style={styles.vazio}>
-      <Text style={styles.vazioTitulo}>Nenhuma vistoria registrada</Text>
-      <Text style={styles.vazioDetalhe}>
+      <Text style={[styles.vazioTitulo, { color: cores.texto }]}>Nenhuma vistoria registrada</Text>
+      <Text style={[styles.vazioDetalhe, { color: cores.textoFraco }]}>
         Toque em "Nova vistoria" para comecar. O registro fica salvo no
         aparelho mesmo sem sinal.
       </Text>
@@ -55,5 +56,5 @@ const styles = StyleSheet.create({
   variante: { fontSize: 14, paddingHorizontal: 16, marginBottom: 16 },
   vazio:       { padding: 24, alignItems: "center" },
   vazioTitulo: { fontSize: 16, fontWeight: "600", marginBottom: 6 },
-  vazioDetalhe:{ fontSize: 14, color: "#5A5A5A", textAlign: "center" },
+  vazioDetalhe:{ fontSize: 14, textAlign: "center" },
 });
